@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Task</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        Add a New Task
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <form action="add_task.php" method="POST" onsubmit="return validateForm()">
+            <label for="title">Task Title:</label>
+            <input type="text" id="title" name="title" placeholder="Enter task title" required>
+
+            <label for="description">Task Description:</label>
+            <textarea id="description" name="description" placeholder="Enter task description (optional)" rows="5"></textarea>
+
+            <label for="dueDate">Due Date:</label>
+            <input type="date" id="dueDate" name="dueDate" required>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+
+            <button type="submit">Add Task</button>
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Task Management System
+    </footer>
+
+    <script>
+        function validateForm() {
+            const dueDate = document.getElementById('dueDate').value;
+            const today = new Date().toISOString().split('T')[0];
+
+            if (dueDate < today) {
+                alert('Due Date cannot be in the past.');
+                return false; // Prevent form submission
+            }
+
+            return true; // Allow form submission
+        }
+    </script>
+</body>
+</html>
